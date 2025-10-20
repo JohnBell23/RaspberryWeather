@@ -1,7 +1,8 @@
 package main
 
 import (
-	"RaspberryWeather/temperature"
+	//"RaspberryWeather/temperature"
+	"RaspberryWeather/view"
 	"fmt"
 	"time"
 
@@ -31,6 +32,8 @@ func main() {
 			fmt.Printf("Temperatur: %.2f °C\n", sensor.Temperature)
 			fmt.Printf("Druck: %.2f hPa\n", sensor.Pressure)
 			fmt.Println("")
+
+			view.TakePicture()
 		}
 		time.Sleep(1 * time.Second)
 		counter++
