@@ -1,7 +1,7 @@
 package main
 
 import (
-	//"RaspberryWeather/temperature"
+	"RaspberryWeather/temperature"
 	"RaspberryWeather/view"
 	"fmt"
 	"time"
