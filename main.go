@@ -16,7 +16,8 @@ func main() {
 	fmt.Printf("Start Weather App\n")
 	done = false
 
-	go getKey()
+	// not used as service
+	//go getKey()
 
 	counter := 0
 	interval := 20
