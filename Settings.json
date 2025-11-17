@@ -1,12 +1,11 @@
 {
   "TemperatureFileName": "temperature.txt",
-  "TemperatureLocalFilePath": "./",
-  "FtpHost" : "",
-  "FtpUser" : "",
-  "FtpPassword":  "",
-  "FtpTargetPath" : "/data",
+  "FtpHost" : "<set ftp host>",
+  "FtpUser" : "<set ftp user>",
+  "FtpPassword":  "<set ftp pw>",
+  "FtpTargetPath" : "<set target path>",
   "PictureName": "shot.jpg",
   "Command" : "fswebcam",
   "CommandArguments" : ["-d", "/dev/video0", "-r", "1280x720", "--set", "white_balance_automatic=0", "--set", "white_balance_temperature=6200", "--set", "gain=0", "--set", "backlight_compensation=0", "--skip", "5", "--jpeg", "95", "--no-banner", "shot.jpg"],
-  "IntervalSec" : 20
+  "IntervalSec" : 300
 }

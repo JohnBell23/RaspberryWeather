@@ -3,6 +3,7 @@ package main
 import (
 	"RaspberryWeather/settings"
 	"RaspberryWeather/temperature"
+	"RaspberryWeather/uploader"
 	"RaspberryWeather/view"
 
 	"fmt"
@@ -47,9 +48,11 @@ func main() {
 
 			fmt.Println("")
 
-			fmt.Printf("wait time %d\n", interval)
+			uploader.UploadFiles()
 
-			// TODO upload picture and temp
+			fmt.Println("")
+
+			fmt.Printf("wait time %d\n", interval)
 
 		}
 		time.Sleep(1 * time.Second)

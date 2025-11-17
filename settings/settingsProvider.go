@@ -6,16 +6,15 @@ import (
 )
 
 type Settings struct {
-	TemperatureFileName      string   `json:"TemperatureFileName"`
-	TemperatureLocalFilePath string   `json:"TemperatureLocalFilePath"`
-	FtpHost                  string   `json:"FtpHost"`
-	FtpUser                  string   `json:"FtpUser"`
-	FtpPassword              string   `json:"FtpPassword"`
-	FtpTargetPath            string   `json:"FtpTargetPath"`
-	PictureName              string   `json:"PictureName"`
-	IntervalSec              int      `json:"IntervalSec"`
-	Command                  string   `json:"Command"`
-	CommandArguments         []string `json:"CommandArguments"`
+	TemperatureFileName string   `json:"TemperatureFileName"`
+	FtpHost             string   `json:"FtpHost"`
+	FtpUser             string   `json:"FtpUser"`
+	FtpPassword         string   `json:"FtpPassword"`
+	FtpTargetPath       string   `json:"FtpTargetPath"`
+	PictureName         string   `json:"PictureName"`
+	IntervalSec         int      `json:"IntervalSec"`
+	Command             string   `json:"Command"`
+	CommandArguments    []string `json:"CommandArguments"`
 }
 
 var Config Settings
