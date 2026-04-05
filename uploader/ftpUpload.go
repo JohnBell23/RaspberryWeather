@@ -3,50 +3,49 @@ package uploader
 import (
 	"RaspberryWeather/settings"
 	"fmt"
-	"log"
 	"os"
+	"path"
 	"time"
 
 	"github.com/jlaffaye/ftp"
 )
 
 func UploadFiles() {
-	fmt.Println("upload files")
+	fmt.Println("upload files start")
 
-	upload(settings.Config.TemperatureFileName)
-	upload(settings.Config.PictureName)
+	files := []string{
+		settings.Config.TemperatureFileName,
+		settings.Config.PictureName,
+	}
+
+	for _, file := range files {
+		if err := upload(file); err != nil {
+			fmt.Println(err)
+			continue
+		}
+
+		fmt.Printf("upload %s done\n", file)
+	}
+
+	fmt.Println("upload files done")
 }
 
-func upload(fileName string) {
-	// connect
-	c, err := ftp.Dial(settings.Config.FtpHost, ftp.DialWithTimeout(5*time.Second))
+func upload(fileName string) error {
+	c, err := ftp.Dial(settings.Config.FtpHost, ftp.DialWithTimeout(30*time.Second))
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
-	defer func(c *ftp.ServerConn) {
-		err := c.Quit()
-		if err != nil {
-			// eat it
-		}
-	}(c)
+	defer c.Quit()
 
-	// login
 	if err := c.Login(settings.Config.FtpUser, settings.Config.FtpPassword); err != nil {
-		fmt.Println("login error, ", err)
+		return err
 	}
 
-	// local file
 	f, err := os.Open(fileName)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 	defer f.Close()
 
-	// upload
-	if err := c.Stor(
-		fmt.Sprintf("%s/%s", settings.Config.FtpTargetPath, fileName), f); err != nil {
-		fmt.Println("upload error, ", err)
-	}
-
-	fmt.Println("upload done")
+	return c.Stor(path.Join(settings.Config.FtpTargetPath, path.Base(fileName)), f)
 }

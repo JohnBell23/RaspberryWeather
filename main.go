@@ -35,16 +35,10 @@ func main() {
 			counter = 0
 			fmt.Println("")
 			fmt.Println(time.Now().Format(time.RFC3339))
-			sensor.UpdateSensorData()
-			fmt.Printf("temperature: %.2f °C\n", sensor.Temperature)
-			fmt.Printf("pressure: %.2f hPa\n", sensor.Pressure)
-			fmt.Println("")
+
+			updateWeatherSensorData(&sensor)
 
 			view.TakePicture()
-
-			fmt.Println("")
-
-			saveWeatherData(sensor.Temperature, sensor.Pressure)
 
 			fmt.Println("")
 
@@ -61,6 +55,14 @@ func main() {
 
 	sensor.Uninitialize()
 	fmt.Printf("goodbye\n")
+}
+
+func updateWeatherSensorData(sensor *temperature.Bmp280) {
+	sensor.UpdateSensorData()
+	fmt.Printf("temperature: %.2f °C\n", sensor.Temperature)
+	fmt.Printf("pressure: %.2f hPa\n", sensor.Pressure)
+	fmt.Println("")
+	saveWeatherData(sensor.Temperature, sensor.Pressure)
 }
 
 func saveWeatherData(temp float64, pressure float64) {

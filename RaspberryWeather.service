@@ -1,19 +1,17 @@
-# /etc/systemd/system/RaspberryWeather.service
 [Unit]
 Description=RaspberryWeather
 After=network-online.target
 Wants=network-online.target
 
 [Service]
+Type=simple
 User=pi
 WorkingDirectory=/home/pi/RaspberryWeather
 ExecStart=/home/pi/RaspberryWeather/RaspberryWeather
 Restart=on-failure
 RestartSec=3
 StandardOutput=journal
-StandardError=inherit
-ProtectHome=false
-
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
